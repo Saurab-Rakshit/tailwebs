@@ -13,7 +13,7 @@ const InputField = ({
   nameIcon,
   subjectIcon,
   markIcon,
-  error
+  error,
 }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -22,36 +22,36 @@ const InputField = ({
   };
 
   return (
-    <div>
-      <label htmlFor={fieldName}>{label}</label>
-      <div className="flex items-center border border-gray-300 gap-x-2">
-        <div className="flex justify-around gap-x-1">
-          {label === "Username" ? icon :
+    <div className="flex flex-col w-full">
+      <label htmlFor={fieldName} className="mb-1 text-gray-700">
+        {label}
+      </label>
+      <div className="flex items-center border border-gray-300 rounded-md">
+        <div className="p-2 text-gray-600">
+        {label === "Username" ? icon :
             label === "Password" ? lockIcon :
               label === "Name" ? nameIcon :
                 label === "Subject" ? subjectIcon :
                   label === "Marks" ? markIcon : ""}
-          <div className="h-4 border border-gray-300"></div>
         </div>
-        <div className="flex items-center">
-          <input
-            type={label === "Password" && !isPasswordVisible ? "password" : "text"}
-            placeholder={placeholder}
-            className="focus:outline-none h-8"
-            name={fieldName}
-            value={value}
-            onChange={onChange}
-          />
-          {label === "Password" && (
-            <div className="mr-1" onClick={togglePasswordVisibility}>
-              {isPasswordVisible ? eyeOpenIcon : eyeCloseIcon}
-            </div>
-          )}
-        </div>
+        <input
+          type={label === "Password" && !isPasswordVisible ? "password" : "text"}
+          placeholder={placeholder}
+          className="flex-grow p-2 focus:outline-none"
+          name={fieldName}
+          value={value}
+          onChange={onChange}
+        />
+        {label === "Password" && (
+          <div className="p-2 cursor-pointer text-gray-600" onClick={togglePasswordVisibility}>
+            {isPasswordVisible ? eyeOpenIcon : eyeCloseIcon}
+          </div>
+        )}
       </div>
-      {error && <div className="text-red-500 text-sm">{error}</div>}
+      {error && <div className="text-red-500 text-sm mt-1">{error}</div>}
     </div>
   );
 };
 
 export default InputField;
+

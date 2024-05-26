@@ -167,7 +167,7 @@ const StudentList = ({ handleLogout }) => {
         <div className="text-xl text-red-500 pl-5 sm:pl-1">tailwebs.</div>
         <div className="flex gap-x-4 text-base pr-3">
           <div>Home</div>
-          <div onClick={onLogout}>Logout</div>
+          <div onClick={onLogout} className="cursor-pointer">Logout</div>
         </div>
       </div>
       <div className="overflow-x-hidden shadow-md sm:rounded-lg pb-10">
