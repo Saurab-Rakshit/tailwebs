@@ -233,8 +233,8 @@ const StudentList = ({ handleLogout }) => {
                       xl:absolute xl:right-[200px]
                       2xl:absolute 2xl:right-[260px]                      
                       ">
-                        <div onClick={() => handleEdit(index)}>Edit</div>
-                        <div onClick={() => handleDelete(index)}>Delete</div>
+                        <div className="cursor-pointer" onClick={() => handleEdit(index)}>Edit</div>
+                        <div className="cursor-pointer" onClick={() => handleDelete(index)}>Delete</div>
                       </div>
                     </>
                   )}
