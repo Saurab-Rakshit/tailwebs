@@ -88,7 +88,19 @@ const StudentList = ({ handleLogout }) => {
     const { name, subject, mark, errors } = state;
 
     if (Object.keys(errors).length === 0 && name && subject && mark) {
-      dispatch(addStudent({ name, subject, mark }));
+      
+      //Here finding the student name index in the students array wether it exist in any index.
+      const existingStudentIndex = students.findIndex(student => student.name === name);      
+      
+      // if exist in any index
+      if(existingStudentIndex !== -1){            
+        // then student marks will be updated                  
+        dispatch(updateStudent({index:existingStudentIndex,name,subject,mark})); 
+      }else{
+        //New row will be added if student with new name is created
+        dispatch(addStudent({name,subject,mark}))
+      }
+      
       setState((prevState) => ({
         ...prevState,
         showModal: false,
@@ -98,7 +110,9 @@ const StudentList = ({ handleLogout }) => {
         errors: {}
       }));
     }
+    
   };
+
 
   const handleEdit = (index) => {
     const student = students[index];
@@ -255,7 +269,7 @@ const StudentList = ({ handleLogout }) => {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-50">
           <div className="bg-white px-10 rounded-sm flex flex-col gap-y-6 border border-red-50 relative md:px-28 md:relative ">
             <div className="flex justify-end" onClick={handleClose}>
-              <div className="text-2xl absolute top-0 right-5 md:absolute md:top-1 md:right-4">x</div>
+              <div className="text-2xl absolute top-0 right-5 md:absolute md:top-1 md:right-4 cursor-pointer">x</div>
             </div>
             <div>
               <InputField

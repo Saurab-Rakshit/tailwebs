@@ -9,7 +9,7 @@ const StudentSlice = createSlice({
         },
         updateStudent(state,action){
             const {index,name,subject,mark} = action.payload;
-            state[index] = {index,name,subject,mark}
+            state[index] = {index,name,subject,mark}            
         },
         deleteStudent(state, action){
             const index = action.payload;
